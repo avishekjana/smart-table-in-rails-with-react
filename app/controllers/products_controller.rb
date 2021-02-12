@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  layout :resolve_layout
+
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
@@ -66,4 +68,13 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :price, :is_active)
     end
+
+    def resolve_layout
+      case action_name
+      when "index"
+        "react" # Load react layout for index action
+      else
+        "application" # Load application layout for other actions
+      end
+    end #End of resolve_layout
 end
