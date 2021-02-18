@@ -1,3 +1,31 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+ul.pagination {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+ul.pagination li {
+  display: inline-block;
+  border-radius: 25px;
+  height: 28px;
+  text-align: center;
+  vertical-align: top;
+}
+
+ul.pagination li a {
+  display: inline-block;
+  font-size: 13px !important;
+  text-transform: capitalize;
+  line-height: 28px;
+  padding: 0 12px !important;
+  cursor: pointer;
+}
+ul.pagination li.active {
+  background-color: #1976d2 !important;
+}
+ul.pagination li.active a {
+  color: #fff;
+}

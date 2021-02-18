@@ -7,4 +7,9 @@ class Api::V1::ProductsController < ApplicationController
     @total_items = @products.count
     @products  = @products.page(@page).per(@per)
   end
+
+  private
+    def sort_direction
+      %w[asc desc].include?(params[:sort_dir]) ? params[:sort_dir] : 'asc'
+    end
 end

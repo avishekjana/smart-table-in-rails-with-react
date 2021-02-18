@@ -25,22 +25,19 @@ function requestError(error) {
 }
 
 export default function fetchProducts(args = {}) {
-  const { page, per, sort, sort_dir } = args;
+  const { page, sort, sort_dir } = args;
 
   // Arranging parameters
   const params = {};
-  // if (page !== 'undefined' || typeof (page) !== 'undefined') {
-  //   params["page"] = page
-  // }
-  // if (per !== 'undefined' || typeof (per) !== 'undefined') {
-  //   params["per"] = per
-  // }
-  // if (sort !== 'undefined' || typeof (sort) !== 'undefined') {
-  //   params["sort"] = sort
-  // }
-  // if (sort_dir !== 'undefined' || typeof (sort_dir) !== 'undefined') {
-  //   params["sort_dir"] = sort_dir
-  // }
+  if (page !== 'undefined' || typeof (page) !== 'undefined') {
+    params["page"] = page
+  }
+  if (sort !== 'undefined' || typeof (sort) !== 'undefined') {
+    params["sort"] = sort
+  }
+  if (sort_dir !== 'undefined' || typeof (sort_dir) !== 'undefined') {
+    params["sort_dir"] = sort_dir
+  }
 
   return function (dispatch) {
     dispatch(requesting());
