@@ -1,12 +1,18 @@
 import React from "react";
 
-// import Products from "./views/products";
-// import siteTheme from './views/shared/theme';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-const App = props => {
+import Products from "./views/products";
+
+const App = () => {
   return (
     <>
-      Smart Products - Powered by react
+      <Router>
+        <Switch>
+          <Route exact path="/" exact component={Products} />
+          <Route path="/products" exact component={Products} />
+        </Switch>
+      </Router>
     </>
   )
 }
