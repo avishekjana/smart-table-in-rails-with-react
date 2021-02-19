@@ -25,7 +25,7 @@ function requestError(error) {
 }
 
 export default function fetchProducts(args = {}) {
-  const { page, sort, sort_dir } = args;
+  const { page, sort, sort_dir, name, is_active } = args;
 
   // Arranging parameters
   const params = {};
@@ -38,7 +38,12 @@ export default function fetchProducts(args = {}) {
   if (sort_dir !== 'undefined' || typeof (sort_dir) !== 'undefined') {
     params["sort_dir"] = sort_dir
   }
-
+  if (name !== 'undefined' || typeof (name) !== 'undefined') {
+    params["name"] = name
+  }
+  if (is_active !== 'undefined' || typeof (is_active) !== 'undefined') {
+    params["is_active"] = is_active
+  }
   return function (dispatch) {
     dispatch(requesting());
     axios.get(`/api/v1/products.json`, { params })

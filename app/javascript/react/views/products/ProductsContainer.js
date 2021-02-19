@@ -25,6 +25,13 @@ class ProductsContainer extends Component {
       args["sort"] = sort
       args["sort_dir"] = sort_dir
     }
+    const formValues = this.props.filterForm;
+    if(formValues.values && formValues.values.name) {
+      args["name"] = formValues.values.name
+    }
+    if(formValues.values && formValues.values.is_active) {
+      args["is_active"] = formValues.values.is_active
+    }
     this.props.fetchProducts(args);
   }
 
@@ -35,6 +42,13 @@ class ProductsContainer extends Component {
     if(sort && sort_dir) {
       args["sort"] = sort
       args["sort_dir"] = sort_dir
+    }
+    const formValues = this.props.filterForm;
+    if(formValues.values && formValues.values.name) {
+      args["name"] = formValues.values.name
+    }
+    if(formValues.values && formValues.values.is_active) {
+      args["is_active"] = formValues.values.is_active
     }
     this.props.fetchProducts(args);
   }
@@ -50,7 +64,7 @@ class ProductsContainer extends Component {
     const isEmpty = products.length === 0;
 
     if (isEmpty && isFetching) {
-      return <span>Loading</span>;
+      return <span>Loading...</span>;
     }
     if (isError) {
       return <span>{errorMessage}</span>;
@@ -74,7 +88,8 @@ function mapStateToProps(state) {
     productMeta: state.product.meta,
     isFetching: state.product.isFetching,
     isError: state.product.isError,
-    errorMessage: state.product.errorMessage
+    errorMessage: state.product.errorMessage,
+    filterForm: state.form.ProductFilterForm
   };
 }
 export default connect(mapStateToProps, { fetchProducts })(ProductsContainer);

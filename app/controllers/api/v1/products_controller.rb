@@ -4,6 +4,8 @@ class Api::V1::ProductsController < ApplicationController
     @page = params[:page] || 1
     @per = params[:per] || 5
     @products = Product.order(_sortable)
+    @products = @products.search(params[:name]) if params[:name].present?
+    @products = @products.by_is_active(params[:is_active]) if params[:is_active].present?
     @total_items = @products.count
     @products  = @products.page(@page).per(@per)
   end
